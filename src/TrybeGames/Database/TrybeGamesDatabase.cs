@@ -94,7 +94,24 @@ public class TrybeGamesDatabase
     public List<StudioGamesPlayers> GetStudiosWithGamesAndPlayers()
     {
         // Implementar
-        throw new NotImplementedException();
+        return (
+			from studio in this.GameStudios
+			select new StudioGamesPlayers {
+				GameStudioName = studio.Name,
+				Games = (
+					from game in this.Games
+					where game.DeveloperStudio == studio.Id
+					select new GamePlayer {
+						GameName = game.Name,
+						Players = (
+							from player in this.Players
+							where game.Players.Contains(player.Id)
+							select player
+						).ToList()
+					}
+				).ToList()
+			}
+		).ToList();
     }
 
 }
