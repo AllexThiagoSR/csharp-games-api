@@ -22,6 +22,13 @@ public class TrybeGamesDatabase
         this.GameStudios.Add(gameStudio);
     }
 
+    public void AddGame(DateTime date, string name, GameType type)
+    {
+        Game game = new() { Name = name, GameType = type, ReleaseDate = date };
+        game.Id = this.Games.Count + 1;
+        this.Games.Add(game);
+    }
+
     // 4. Crie a funcionalidade de buscar jogos desenvolvidos por um estúdio de jogos
     public List<Game> GetGamesDevelopedBy(GameStudio gameStudio)
     {

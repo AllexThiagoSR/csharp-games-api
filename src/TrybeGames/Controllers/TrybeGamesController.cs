@@ -138,7 +138,22 @@ public class TrybeGamesController
     public void AddGame()
     {
         // implementar
-        Console.WriteLine("Ainda não é possível realizar essa funcionalidade!");
+        try
+        {
+            Console.WriteLine("Nome do Jogo: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Data de Lançamento do Jogo: ");
+            bool canConvert = DateTime.TryParse(Console.ReadLine(), out DateTime date);
+            if (!canConvert) throw new Exception();
+            canConvert = GameType.TryParse(Console.ReadLine(), out GameType type);
+            if (!canConvert) throw new Exception();
+            this.database.AddGame(date, name, type);
+        }
+        catch (Exception)
+        {
+            this.Console.WriteLine("Something went wrong");
+        }
+
     }
 
     public void ChangeGameStudio(Game game)
