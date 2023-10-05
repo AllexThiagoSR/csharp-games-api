@@ -143,7 +143,9 @@ public class TrybeGamesController
             Console.WriteLine("Nome do Jogo: ");
             string name = Console.ReadLine();
             Console.WriteLine("Data de Lançamento do Jogo: ");
-            bool canConvert = DateTime.TryParse(Console.ReadLine(), out DateTime date);
+            string[] splitted = Console.ReadLine().Split('/');
+            string dateString = $"{splitted[1]}/{splitted[0]}/{splitted[2]}";
+            bool canConvert = DateTime.TryParse(dateString, out DateTime date);
             if (!canConvert) throw new Exception();
             canConvert = GameType.TryParse(Console.ReadLine(), out GameType type);
             if (!canConvert) throw new Exception();
