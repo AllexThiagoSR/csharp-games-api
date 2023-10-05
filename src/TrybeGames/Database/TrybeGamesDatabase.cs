@@ -2,7 +2,6 @@ namespace TrybeGames;
 
 public class TrybeGamesDatabase
 {
-    private static int _nextPlayerId = 1;
     public List<Game> Games = new List<Game>();
 
     public List<GameStudio> GameStudios = new List<GameStudio>();
@@ -11,9 +10,8 @@ public class TrybeGamesDatabase
 
     public void AddPlayer(Player player)
     {
-        player.Id = TrybeGamesDatabase._nextPlayerId;
+        player.Id = this.Players.Count() + 1;
         this.Players.Add(player);
-        TrybeGamesDatabase._nextPlayerId ++;
     }
 
     // 4. Crie a funcionalidade de buscar jogos desenvolvidos por um estúdio de jogos
