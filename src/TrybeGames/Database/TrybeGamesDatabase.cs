@@ -44,10 +44,8 @@ public class TrybeGamesDatabase
     {
         // Implementar
         return (
-			from playerFound in this.Players
-			where player.Id == playerFound.Id
 			from game in this.Games
-			where playerFound.GamesOwned.Contains(game.Id)
+			where game.Players.Contains(player.Id)
 			select game
 		).ToList();
     }
@@ -56,7 +54,13 @@ public class TrybeGamesDatabase
     public List<Game> GetGamesOwnedBy(Player playerEntry)
     {
         // Implementar
-        throw new NotImplementedException();
+        return (
+			from player in this.Players
+			where playerEntry.Id == player.Id
+			from game in this.Games
+			where player.GamesOwned.Contains(game.Id)
+			select game
+		).ToList();
     }
 
 
