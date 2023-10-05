@@ -122,8 +122,7 @@ public class TrybeGamesController
     {
         this.Console.WriteLine("Nome do Jogador: ");
         string name = this.Console.ReadLine();
-        Player player = new() { Name = name, Id = -1 };
-        this.database.AddPlayer(player);
+        this.database.AddPlayer(name);
     }
 
     // 2. Crie a funcionalidade de adicionar um novo estúdio de jogos ao banco de dados

@@ -8,9 +8,10 @@ public class TrybeGamesDatabase
 
     public List<Player> Players = new List<Player>();
 
-    public void AddPlayer(Player player)
+    public void AddPlayer(string name)
     {
-        player.Id = this.Players.Count() + 1;
+        Player player = new() { Name = name };
+        player.Id = Players.Count + 1;
         this.Players.Add(player);
     }
 
